@@ -23,6 +23,8 @@ If you are working on Visual Studio Code you may want to install the following e
 - Microsoft.EntityFrameworkCore.Tools v8.0.7
 - Microsoft.EntityFrameworkCore.Design v8.0.7
 - AutoMapper v13.0.1
+- Newtonsoft.Json
+- Microsoft.AspNetCore.Mvc.NewtonsoftJson
 ```
 ## First Steps
 Create a database named `finshark` or your preferred name and update the `appsettings.json` file with your server name and the database name in the `DefaultConnection` string.
