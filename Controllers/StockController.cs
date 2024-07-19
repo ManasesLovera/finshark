@@ -26,11 +26,17 @@ namespace api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll(IMapper _mapper)
         {
-            var stocks = await _stockRepo.GetAllAsync();
-            var stocksDto = stocks.Select(s => _mapper.Map<StockDto>(s));
-            return Ok(stocksDto);
+            try {
+
+                var stocks = await _stockRepo.GetAllAsync();
+                var stocksDto = stocks.Select(s => _mapper.Map<StockDto>(s));
+                return Ok(stocksDto);
+            }
+            catch (Exception ex) {
+                return Problem(ex.Message, statusCode: 500);
+            }
         }
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById(IMapper _mapper,[FromRoute] int id)
         {
             var stock = await _stockRepo.GetByIdAsync(id);
@@ -49,7 +55,7 @@ namespace api.Controllers
             return CreatedAtAction(nameof(GetById), new { id = stockModel.Id}, _mapper.Map<StockDto>(stockModel));
         }
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Update(IMapper _mapper, [FromRoute] int id, [FromBody] UpdateStockRequestDto updateStockRequestDto)
         {
             var stockModel = await _stockRepo.UpdateAsync(id, updateStockRequestDto);
@@ -60,7 +66,7 @@ namespace api.Controllers
             return Ok(_mapper.Map<StockDto>(stockModel));
         }
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             var stock = await _stockRepo.DeleteAsync(id);

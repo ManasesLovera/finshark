@@ -17,6 +17,8 @@ namespace api
             CreateMap<CreateStockRequest, Stock>().ReverseMap();
             CreateMap<UpdateStockRequestDto, StockDto>().ReverseMap();
             CreateMap<Comment, CommentDto>().ReverseMap();
+            CreateMap<CreateCommentDto, Comment>().ReverseMap();
+            CreateMap<UpdateCommentRequestDto, Comment>().ReverseMap();
         }
         
     }
