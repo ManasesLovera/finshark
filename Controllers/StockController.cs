@@ -7,6 +7,7 @@ using api.DTOs.Stock;
 using api.Interfaces;
 using api.Models;
 using AutoMapper;
+using Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,13 +25,13 @@ namespace api.Controllers
             _context = context;
         }
         [HttpGet]
-        public async Task<IActionResult> GetAll(IMapper _mapper)
+        public async Task<IActionResult> GetAll(IMapper _mapper, [FromQuery] QueryObject query)
         {
             try {
                 if(!ModelState.IsValid)
                     return BadRequest(ModelState);
 
-                var stocks = await _stockRepo.GetAllAsync();
+                var stocks = await _stockRepo.GetAllAsync(query);
                 var stocksDto = stocks.Select(s => _mapper.Map<StockDto>(s));
                 return Ok(stocksDto);
             }
@@ -81,7 +82,7 @@ namespace api.Controllers
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
-                
+
             var stock = await _stockRepo.DeleteAsync(id);
 
             if(stock == null)
