@@ -25,6 +25,9 @@ namespace api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var comments = await _commentRepo.GetAllAsync();
             return Ok(comments);
         }
@@ -40,6 +43,9 @@ namespace api.Controllers
         public async Task<IActionResult> Create(IMapper _mapper,[FromRoute] int stockId, CreateCommentDto commentDto)
         {
             try {
+                if(!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
                 if(!await _stockRepo.StockExists(stockId))
                     return BadRequest("Stock does not exist");
 
@@ -56,6 +62,9 @@ namespace api.Controllers
         [Route("{id:int}")]
         public async Task<IActionResult> Update(IMapper _mapper,[FromRoute] int id, [FromBody] UpdateCommentRequestDto updateDto)
         {
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var comment = await _commentRepo.UpdateAsync(id,_mapper.Map<Comment>(updateDto));
 
             if(comment == null)
@@ -67,6 +76,9 @@ namespace api.Controllers
         [Route("{id:int}")]
         public async Task<IActionResult> Delete(IMapper _mapper, [FromRoute] int id)
         {
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+                
             var comment = await _commentRepo.DeleteAsync(id);
             if(comment == null)
                 return NotFound("Comment not found");
