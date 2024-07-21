@@ -7,6 +7,7 @@ using api.DTOs.Stock;
 using api.Interfaces;
 using api.Models;
 using AutoMapper;
+using FluentValidation;
 using Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,13 +20,19 @@ namespace api.Controllers
     {
         private readonly IStockRepository _stockRepo;
         private readonly ApplicationDbContext _context;
-        public StockController(IStockRepository stockRepository, ApplicationDbContext context)
+        private readonly IMapper _mapper;
+        private readonly IValidator<CreateStockRequest> _validator;
+
+        public StockController(IStockRepository stockRepository, ApplicationDbContext context, 
+                               IMapper mapper,IValidator<CreateStockRequest> validator)
         {
             _stockRepo = stockRepository;
             _context = context;
+            _mapper = mapper;
+            _validator = validator;
         }
         [HttpGet]
-        public async Task<IActionResult> GetAll(IMapper _mapper, [FromQuery] QueryObject query)
+        public async Task<IActionResult> GetAll([FromQuery] QueryObject query)
         {
             try {
                 if(!ModelState.IsValid)
@@ -40,7 +47,7 @@ namespace api.Controllers
             }
         }
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetById(IMapper _mapper,[FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -53,7 +60,7 @@ namespace api.Controllers
             return Ok(_mapper.Map<StockDto>(stock));
         }
         [HttpPost]
-        public async Task<IActionResult> Create(IMapper _mapper,[FromBody] CreateStockRequest stockDto)
+        public async Task<IActionResult> Create([FromBody] CreateStockRequest stockDto)
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -64,7 +71,7 @@ namespace api.Controllers
         }
         [HttpPut]
         [Route("{id:int}")]
-        public async Task<IActionResult> Update(IMapper _mapper, [FromRoute] int id, [FromBody] UpdateStockRequestDto updateStockRequestDto)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateStockRequestDto updateStockRequestDto)
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);

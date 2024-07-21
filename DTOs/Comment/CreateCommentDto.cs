@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Interfaces;
 
 namespace api.DTOs.Comment
 {
-    public class CreateCommentDto
+    public class CreateCommentDto : ICommentDto
     {
         [Required]
-        [MinLength(5,ErrorMessage = "Title must be more than 5 characters")]
-        [MaxLength(280, ErrorMessage = "Title can't be over 280 characters")]
+        [MinLength(5,ErrorMessage = "El titulo debe tener 5 caracteres o mas")]
+        [MaxLength(280, ErrorMessage = "El titulo no puede contener mas de 280 caracteres")]
         public string Title { get; set; } = String.Empty;
         [Required]
-        [MinLength(5,ErrorMessage = "Comment must be more than 5 characters")]
-        [MaxLength(280, ErrorMessage = "Comment can't be over 280 characters")]
+        [MinLength(5,ErrorMessage = "El contenido debe tener 5 caracteres o mas")]
+        [MaxLength(280, ErrorMessage = "El contenido no puede contener mas de 280 caracteres")]
         public string Content { get; set; } = String.Empty;
     }
 }

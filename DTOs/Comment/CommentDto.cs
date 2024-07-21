@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Interfaces;
 using api.Models;
 
 namespace api.DTOs.Comment
 {
-    public class CommentDto
+    public class CommentDto : ICommentDto
     {
         public int Id { get; set; }
         public string Title { get; set; } = String.Empty;

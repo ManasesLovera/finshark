@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "3rtleDuKujT6SXT69Z9LxC6Z4N30d7gOlTlLW2rScBRUDh+CZP5U/KFAaHe+SBSdNMeOIfdR8FyeO17jJ/hV/Q==",
+  "dgSpecHash": "/vlyz99AfeBqpEGaVycinMeNNpMWbZja4FygMi8iz5PxgRlCUeq79qgtvqjA9iKawLYkHuavy1JlhgCCwYcCdQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Manases\\Desktop\\youtube project\\api\\api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Manases\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Manases\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Manases\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
+    "C:\\Users\\Manases\\.nuget\\packages\\fluentvalidation\\11.9.2\\fluentvalidation.11.9.2.nupkg.sha512",
     "C:\\Users\\Manases\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Manases\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\8.0.7\\microsoft.aspnetcore.jsonpatch.8.0.7.nupkg.sha512",
     "C:\\Users\\Manases\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\8.0.7\\microsoft.aspnetcore.mvc.newtonsoftjson.8.0.7.nupkg.sha512",
