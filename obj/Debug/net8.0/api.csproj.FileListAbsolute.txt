@@ -142,3 +142,4 @@ C:\Users\Manases\Desktop\youtube project\api\bin\Debug\net8.0\Microsoft.AspNetCo
 C:\Users\Manases\Desktop\youtube project\api\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\Manases\Desktop\youtube project\api\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
 C:\Users\Manases\Desktop\youtube project\api\obj\Debug\net8.0\api.sourcelink.json
+C:\Users\Manases\Desktop\youtube project\api\bin\Debug\net8.0\FluentValidation.dll
