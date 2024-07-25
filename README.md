@@ -25,6 +25,9 @@ If you are working on Visual Studio Code you may want to install the following e
 - AutoMapper v13.0.1
 - Newtonsoft.Json
 - Microsoft.AspNetCore.Mvc.NewtonsoftJson
+- Microsoft.Extensions.Identity.Core
+- Microsoft.AspNetCore.Identity.EntityFrameworkCore
+- Microsoft.AspNetCore.Authentication.JwtBearer
 ```
 ## First Steps
 Create a database named `finshark` or your preferred name and update the `appsettings.json` file with your server name and the database name in the `DefaultConnection` string.

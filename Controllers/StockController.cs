@@ -35,9 +35,6 @@ namespace api.Controllers
         public async Task<IActionResult> GetAll([FromQuery] QueryObject query)
         {
             try {
-                if(!ModelState.IsValid)
-                    return BadRequest(ModelState);
-
                 var stocks = await _stockRepo.GetAllAsync(query);
                 var stocksDto = stocks.Select(s => _mapper.Map<StockDto>(s));
                 return Ok(stocksDto);
@@ -49,9 +46,6 @@ namespace api.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            if(!ModelState.IsValid)
-                return BadRequest(ModelState);
-
             var stock = await _stockRepo.GetByIdAsync(id);
             if(stock == null)
             {
