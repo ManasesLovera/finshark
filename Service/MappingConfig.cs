@@ -21,6 +21,6 @@ namespace api.Service
             CreateMap<CreateCommentDto, Comment>().ReverseMap();
             CreateMap<UpdateCommentRequestDto, Comment>().ReverseMap();
             CreateMap<RegisterDto, AppUser>().ReverseMap();
-        }    
+        }
     }
 }

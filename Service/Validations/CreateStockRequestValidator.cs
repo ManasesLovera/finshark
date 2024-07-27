@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using api.DTOs.Stock;
 using FluentValidation;
 
-namespace api.Validations
+namespace api.Service.Validations
 {
     public class CreateStockRequestValidator : AbstractValidator<CreateStockRequest>
     {

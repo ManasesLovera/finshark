@@ -29,22 +29,31 @@ namespace api.Service
                 new Claim(JwtRegisteredClaimNames.GivenName, user.UserName!)
             };
 
-            var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
+            var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256);
 
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddDays(7),
-                SigningCredentials = creds,
-                Issuer = _config["JWT:Issuer"],
-                Audience = _config["JWT:Audience"]
-            };
+            // var tokenDescriptor = new SecurityTokenDescriptor
+            // {
+            //     Subject = new ClaimsIdentity(claims),
+            //     Expires = DateTime.Now.AddDays(7),
+            //     SigningCredentials = creds,
+            //     Issuer = _config["JWT:Issuer"],
+            //     Audience = _config["JWT:Audience"]
+            // };
 
-            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = new JwtSecurityToken
+            (
+                issuer: _config["JWT:Issuer"],
+                audience: _config["JWT:Audience"],
+                claims: claims,
+                expires: DateTime.Now.AddDays(7),
+                signingCredentials: creds
+            );
 
-            var token = tokenHandler.CreateToken(tokenDescriptor);
+            // var tokenHandler = new JwtSecurityTokenHandler();
 
-            return tokenHandler.WriteToken(token);
+            // var token = tokenHandler.CreateToken(tokenDescriptor);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

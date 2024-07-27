@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using api.Interfaces;
 using FluentValidation;
 
-namespace api.Validations
+namespace api.Service.Validations
 {
     public class CommentDtoValidator : AbstractValidator<ICommentDto>
     {
