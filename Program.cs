@@ -5,6 +5,7 @@ using api.DTOs.Stock;
 using api.Interfaces;
 using api.Models;
 using api.Repository;
+using api.Service;
 using api.Validations;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -64,11 +65,14 @@ builder.Services.AddAuthentication(options => {
     }
 );
 
-// Dependencias de los repositorios
+// Dependency injection for repositories
 builder.Services.AddScoped<IStockRepository, StockRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 
-// Dependencia de FluentValidation
+// Dependency for JWT authorization token service
+builder.Services.AddScoped<ITokenService, TokenService>();
+
+// Dependency injection for Validators (FluentValidation)
 builder.Services.AddScoped<IValidator<ICommentDto>, CommentDtoValidator>();
 builder.Services.AddScoped<IValidator<CreateStockRequest>, CreateStockRequestValidator>();
 
