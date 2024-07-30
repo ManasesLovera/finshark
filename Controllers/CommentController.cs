@@ -7,6 +7,7 @@ using api.Interfaces;
 using api.Models;
 using AutoMapper;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -29,6 +30,7 @@ namespace api.Controllers
             _validator = validator;
         }
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAll()
         {
             var comments = await _commentRepo.GetAllAsync();
