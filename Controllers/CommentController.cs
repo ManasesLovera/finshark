@@ -58,7 +58,7 @@ namespace api.Controllers
                 var commentModel = _mapper.Map<Comment>(commentDto);
                 commentModel.StockId = stockId;
                 await _commentRepo.CreateAsync(commentModel);
-                return CreatedAtAction(nameof(GetById), new {id = commentModel}, _mapper.Map<CommentDto>(commentModel));
+                return CreatedAtAction(nameof(GetById), new {id = commentModel.Id}, _mapper.Map<CommentDto>(commentModel));
             }
             catch (Exception ex) {
                 return Problem(ex.Message, statusCode: 500);

@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using api.DTOs.Account;
 using api.Interfaces;
 using api.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -87,6 +89,18 @@ namespace api.Controllers
                     Token = _tokenService.CreateToken(user)
                 }
             );
+        }
+        [HttpGet]
+        [Authorize]
+        public IActionResult GetUserInfo()
+        {
+            var user = new {
+                Id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
+                Username = User.FindFirst(ClaimTypes.GivenName)?.Value,
+                Email = User.FindFirst(ClaimTypes.Email)?.Value,
+                IsAuth = User.Identity!.IsAuthenticated
+            };
+            return Ok(user);
         }
     }
 }

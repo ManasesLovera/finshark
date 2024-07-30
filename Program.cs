@@ -111,6 +111,7 @@ builder.Services.AddAuthentication(options =>
 // Dependency injection for repositories
 builder.Services.AddScoped<IStockRepository, StockRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+builder.Services.AddScoped<IPortfolioRepository, PortfolioRepository>();
 
 // Dependency for JWT authorization token service
 builder.Services.AddScoped<ITokenService, TokenService>();
