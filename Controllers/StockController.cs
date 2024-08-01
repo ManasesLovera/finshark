@@ -38,7 +38,7 @@ namespace api.Controllers
         {
             try {
                 var stocks = await _stockRepo.GetAllAsync(query);
-                var stocksDto = stocks.Select(s => _mapper.Map<StockDto>(s));
+                var stocksDto = stocks.Select(s => _mapper.Map<StockDto>(s)).ToList();
                 return Ok(stocksDto);
             }
             catch (Exception ex) {
